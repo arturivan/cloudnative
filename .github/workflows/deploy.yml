@@ -116,11 +116,11 @@ jobs:
       # Substitute secrets
       - name: Substitute values
         env:
-          ACR_NAME: ${{ secrets.ACR_NAME }} 
-          RABBITMQ_USER: ${{ secrets.RABBITMQ_USER }}
-          RABBITMQ_PASS: ${{ secrets.RABBITMQ_PASS }}
-          ORDER_QUEUE_USER: ${{ secrets.ORDER_QUEUE_USER }}
-          ORDER_QUEUE_PASS: ${{ secrets.ORDER_QUEUE_PASS }}
+          $ACR_NAME: ${{ secrets.ACR_NAME }} 
+          $RABBITMQ_USER: ${{ secrets.RABBITMQ_USER }}
+          $RABBITMQ_PASS: ${{ secrets.RABBITMQ_PASS }}
+          $ORDER_QUEUE_USER: ${{ secrets.ORDER_QUEUE_USER }}
+          $ORDER_QUEUE_PASS: ${{ secrets.ORDER_QUEUE_PASS }}
         run: |
           envsubst < appstore.yaml > deploywithsecrets.yaml
 
