@@ -1,0 +1,180 @@
+Back-off pulling image "azdevops77.azurecr.io/store-front:latest"
+
+4
+
+79s
+
+Error: ImagePullBackOff
+
+4
+
+79s
+
+Pulling image "azdevops77.azurecr.io/store-front:latest"
+
+3
+
+80s
+
+Failed to pull image "azdevops77.azurecr.io/store-front:latest": failed to pull and unpack image "azdevops77.azurecr.io/store-front:latest": failed to resolve reference "azdevops77.azurecr.io/store-front:latest": failed to authorize: failed to fetch anonymous token: unexpected status from GET request to https://azdevops77.azurecr.io/oauth2/token?scope=repository%3Astore-front%3Apull&service=azdevops77.azurecr.io: 401 Unauthorized
+
+3
+
+80s
+
+Error: ErrImagePull
+
+3
+
+80s
+
+Successfully assigned default/store-front-844ddf6f4b-fq4bq to rke2
+
+1
+
+
+## ## RabbitMQ 3.13.2  
+
+## ##  
+
+########## Copyright (c) 2007-2024 Broadcom Inc and/or its subsidiaries  
+
+###### ##  
+
+########## Licensed under the MPL 2.0. Website: https://rabbitmq.com  
+
+  
+
+Erlang: 26.2.5 [jit]  
+
+TLS Library: OpenSSL - OpenSSL 3.1.5 30 Jan 2024  
+
+Release series support status: supported  
+
+  
+
+Doc guides: https://www.rabbitmq.com/docs  
+
+Support: https://www.rabbitmq.com/docs/contact  
+
+Tutorials: https://www.rabbitmq.com/tutorials  
+
+Monitoring: https://www.rabbitmq.com/docs/monitoring  
+
+Upgrading: https://www.rabbitmq.com/docs/upgrade  
+
+  
+
+Logs: <stdout>  
+
+  
+
+Config file(s): /etc/rabbitmq/conf.d/10-defaults.conf  
+
+  
+
+Starting broker...2025-02-22 17:05:57.800740+00:00 [info] <0.254.0>  
+
+2025-02-22 17:05:57.800740+00:00 [info] <0.254.0> node : rabbit@rabbitmq-0  
+
+2025-02-22 17:05:57.800740+00:00 [info] <0.254.0> home dir : /var/lib/rabbitmq  
+
+2025-02-22 17:05:57.800740+00:00 [info] <0.254.0> config file(s) : /etc/rabbitmq/conf.d/10-defaults.conf  
+
+2025-02-22 17:05:57.800740+00:00 [info] <0.254.0> cookie hash : my9RaXOwB2x/CZmO70qgBw==  
+
+2025-02-22 17:05:57.800740+00:00 [info] <0.254.0> log(s) : <stdout>  
+
+2025-02-22 17:05:57.800740+00:00 [info] <0.254.0> data dir : /var/lib/rabbitmq/mnesia/rabbit@rabbitmq-0  
+
+  
+
+BOOT FAILED  
+
+===========  
+
+Error during startup: {error,  
+
+{cannot_read_enabled_plugins_file,  
+
+"/etc/rabbitmq/enabled_plugins",  
+
+{1,erl_parse,  
+
+["syntax error before: ","Removed"]}}}  
+
+  
+
+2025-02-22 17:05:57.843744+00:00 [notice] <0.44.0> Application mnesia exited with reason: stopped  
+
+2025-02-22 17:05:57.843867+00:00 [error] <0.254.0>  
+
+2025-02-22 17:05:57.843867+00:00 [error] <0.254.0> BOOT FAILED  
+
+2025-02-22 17:05:57.843867+00:00 [error] <0.254.0> ===========  
+
+2025-02-22 17:05:57.843867+00:00 [error] <0.254.0> Error during startup: {error,  
+
+2025-02-22 17:05:57.843867+00:00 [error] <0.254.0> {cannot_read_enabled_plugins_file,  
+
+2025-02-22 17:05:57.843867+00:00 [error] <0.254.0> "/etc/rabbitmq/enabled_plugins",  
+
+2025-02-22 17:05:57.843867+00:00 [error] <0.254.0> {1,erl_parse,  
+
+2025-02-22 17:05:57.843867+00:00 [error] <0.254.0> ["syntax error before: ","Removed"]}}}  
+
+2025-02-22 17:05:57.843867+00:00 [error] <0.254.0>  
+
+2025-02-22 17:05:58.845910+00:00 [error] <0.253.0> crasher:  
+
+2025-02-22 17:05:58.845910+00:00 [error] <0.253.0> initial call: application_master:init/4  
+
+2025-02-22 17:05:58.845910+00:00 [error] <0.253.0> pid: <0.253.0>  
+
+2025-02-22 17:05:58.845910+00:00 [error] <0.253.0> registered_name: []  
+
+2025-02-22 17:05:58.845910+00:00 [error] <0.253.0> exception exit: {{cannot_read_enabled_plugins_file,  
+
+2025-02-22 17:05:58.845910+00:00 [error] <0.253.0> "/etc/rabbitmq/enabled_plugins",  
+
+2025-02-22 17:05:58.845910+00:00 [error] <0.253.0> {1,erl_parse,["syntax error before: ","Removed"]}},  
+
+2025-02-22 17:05:58.845910+00:00 [error] <0.253.0> {rabbit,start,[normal,[]]}}  
+
+2025-02-22 17:05:58.845910+00:00 [error] <0.253.0> in function application_master:init/4 (application_master.erl, line 142)  
+
+2025-02-22 17:05:58.845910+00:00 [error] <0.253.0> ancestors: [<0.252.0>]  
+
+2025-02-22 17:05:58.845910+00:00 [error] <0.253.0> message_queue_len: 1  
+
+2025-02-22 17:05:58.845910+00:00 [error] <0.253.0> messages: [{'EXIT',<0.254.0>,normal}]  
+
+2025-02-22 17:05:58.845910+00:00 [error] <0.253.0> links: [<0.252.0>,<0.44.0>]  
+
+2025-02-22 17:05:58.845910+00:00 [error] <0.253.0> dictionary: []  
+
+2025-02-22 17:05:58.845910+00:00 [error] <0.253.0> trap_exit: true  
+
+2025-02-22 17:05:58.845910+00:00 [error] <0.253.0> status: running  
+
+2025-02-22 17:05:58.845910+00:00 [error] <0.253.0> heap_size: 2586  
+
+2025-02-22 17:05:58.845910+00:00 [error] <0.253.0> stack_size: 28  
+
+2025-02-22 17:05:58.845910+00:00 [error] <0.253.0> reductions: 167  
+
+2025-02-22 17:05:58.845910+00:00 [error] <0.253.0> neighbours:  
+
+2025-02-22 17:05:58.845910+00:00 [error] <0.253.0>  
+
+2025-02-22 17:05:58.865999+00:00 [notice] <0.44.0> Application rabbit exited with reason: {{cannot_read_enabled_plugins_file,"/etc/rabbitmq/enabled_plugins",{1,erl_parse,["syntax error before: ","Removed"]}},{rabbit,start,[normal,[]]}}  
+
+Runtime terminating during boot (terminating)  
+
+  
+
+Crash dump is being written to: /var/log/rabbitmq/erl_crash.dump...done  
+
+[os_mon] cpu supervisor port (cpu_sup): Erlang has closed  
+
+[os_mon] memory supervisor port (memsup): Erlang has closed

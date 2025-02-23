@@ -1,0 +1,115 @@
+name: Microservices Deployment
+
+on:
+  push:
+    branches:
+      - main
+    paths-ignore:
+      - "assets/**" # Exclude
+      - "logs/**"
+  pull_request:
+    branches:
+      - main
+    paths-ignore:
+      - "assets/**" # Exclude
+      - "logs/**"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Checkout the code
+      - name: Checkout code
+        uses: actions/checkout@v3
+      # Set up Docker Buildx
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v2
+
+      # Log in to Azure
+      - name: Azure Login
+        uses: azure/login@v1
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+      # Log in to Azure Container Registry (ACR)
+      - name: Log in to ACR
+        run: az acr login --name ${{ secrets.ACR_NAME }}
+
+      # Set variables
+      - name: Set environment variables
+        run: echo "IMAGE_NAME1=${{ secrets.ACR_NAME }}.azurecr.io/store-front:latest" >> $GITHUB_ENV
+
+      - name: Set environment variables
+        run: echo "IMAGE_NAME2=${{ secrets.ACR_NAME }}.azurecr.io/order-service:latest" >> $GITHUB_ENV
+
+      - name: Set environment variables
+        run: echo "IMAGE_NAME3=${{ secrets.ACR_NAME }}.azurecr.io/product-service:latest" >> $GITHUB_ENV
+
+      # Build the store-front image
+      - name: Build Docker Image
+        working-directory: ./store-front
+        run: docker build -t $IMAGE_NAME1 .
+
+      # Push store-front to Azure Container Registry
+      - name: Push Docker Image
+        run: docker push $IMAGE_NAME1
+
+        # Build the order-service image
+      - name: Build Docker Image
+        working-directory: ./src/order-service
+        run: docker build -t $IMAGE_NAME2 .
+
+        # Push order-service to Azure Container Registry
+      - name: Push Docker Image
+        run: docker push $IMAGE_NAME2
+
+        # Build the product-service image
+      - name: Build Docker Image
+        working-directory: ./src/product-service
+        run: docker build -t $IMAGE_NAME3 .
+
+      # Push product-service to Azure Container Registry
+      - name: Push Docker Image
+        run: docker push $IMAGE_NAME3
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      # Step 7: Setup Tailscale for private Kubernetes access
+      - name: Setup Tailscale
+        uses: tailscale/github-action@v2
+        with:
+          authkey: ${{ secrets.TAILSCALE_AUTH_KEY }}
+
+      - name: Check Tailscale connection
+        run: |
+          tailscale status
+          ping -c 3 100.117.55.121 # Kubernetes server IP
+
+      # Step 8: Install kubectl
+      - name: Install kubectl
+        uses: azure/setup-kubectl@v3
+        with:
+          version: v1.26.0
+
+      # Step 9: Configure kubectl using the kubeconfig stored in secrets
+      - name: Configure kubectl
+        run: |
+          mkdir -p ~/.kube
+          echo "${{ secrets.KUBECONFIG }}" | base64 -d > ~/.kube/config
+
+      # Step 10: Verify Kubernetes connection
+      - name: Verify Kubernetes context
+        run: |
+          kubectl config set-context --current --namespace=storeapp || echo "No context set, checking available contexts."
+          kubectl cluster-info || echo "Failed to connect to the Kubernetes API server"
+
+      # Step 12: Deploy to Kubernetes
+      - name: Deploy to Kubernetes
+        run: |
+          kubectl apply -f appstore.yaml || echo "Failed to apply spark-app.yaml"
