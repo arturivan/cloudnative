@@ -113,7 +113,7 @@ jobs:
       - name: Install envsubst
         run: sudo apt-get install gettext-base
        
-      # Substitute secrets
+      # Substitute secret values
       - name: Substitute values
         env:
           $ACR_NAME: ${{ secrets.ACR_NAME }} 
