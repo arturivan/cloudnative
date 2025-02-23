@@ -3,13 +3,13 @@ name: Microservices Deployment
 on:
   push:
     branches:
-      - main
+      - dev
     paths-ignore:
       - "assets/**" # Exclude
       - "logs/**"
   pull_request:
     branches:
-      - main
+      - dev
     paths-ignore:
       - "assets/**" # Exclude
       - "logs/**"
