@@ -80,7 +80,7 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      # Step 7: Setup Tailscale for private Kubernetes access
+      # Setup Tailscale for private Kubernetes access
       - name: Setup Tailscale
         uses: tailscale/github-action@v2
         with:
@@ -91,25 +91,40 @@ jobs:
           tailscale status
           ping -c 3 100.117.55.121 # Kubernetes server IP
 
-      # Step 8: Install kubectl
+      # Install kubectl
       - name: Install kubectl
         uses: azure/setup-kubectl@v3
         with:
           version: v1.26.0
 
-      # Step 9: Configure kubectl using the kubeconfig stored in secrets
+      # Configure kubectl using the kubeconfig stored in secrets
       - name: Configure kubectl
         run: |
           mkdir -p ~/.kube
           echo "${{ secrets.KUBECONFIG }}" | base64 -d > ~/.kube/config
 
-      # Step 10: Verify Kubernetes connection
+      # Verify Kubernetes connection
       - name: Verify Kubernetes context
         run: |
           kubectl config set-context --current --namespace=storeapp || echo "No context set, checking available contexts."
           kubectl cluster-info || echo "Failed to connect to the Kubernetes API server"
+      
+      # Configure envsubst
+      - name: Install envsubst
+        run: sudo apt-get install gettext-base
+       
+      # Substitute secrets
+      - name: Substitute values
+        env:
+          ACR_NAME: ${{ secrets.ACR_NAME }} 
+          RABBITMQ_USER: ${{ secrets.RABBITMQ_USER }}
+          RABBITMQ_PASS: ${{ secrets.RABBITMQ_PASS }}
+          ORDER_QUEUE_USER: ${{ secrets.ORDER_QUEUE_USER }}
+          ORDER_QUEUE_PASS: ${{ secrets.ORDER_QUEUE_PASS }}
+        run: |
+          envsubst < appstore.yaml > deploywithsecrets.yaml
 
-      # Step 12: Deploy to Kubernetes
+      # Deploy to Kubernetes
       - name: Deploy to Kubernetes
         run: |
-          kubectl apply -f appstore.yaml || echo "Failed to apply spark-app.yaml"
+          kubectl apply -f deploywithsecrets.yaml || echo "Failed to apply *.yaml"

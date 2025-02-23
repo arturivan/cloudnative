@@ -21,7 +21,7 @@ spec:
         - name: acr-secret
       containers:
         - name: rabbitmq
-          image: ${{ secrets.ACR_NAME }}.azurecr.io/rabbitmq:3.13.2
+          image: ACR_NAME.azurecr.io/rabbitmq:3.13.2
           imagePullPolicy: Always
           ports:
             - containerPort: 5672
@@ -30,9 +30,9 @@ spec:
               name: rabbitmq-http
           env:
             - name: RABBITMQ_DEFAULT_USER
-              value: ${{ secrets.RABBITMQ_USER }}
+              value: RABBITMQ_USER
             - name: RABBITMQ_DEFAULT_PASS
-              value: ${{ secrets.RABBITMQ_PASS }}
+              value: RABBITMQ_PASS
           resources:
             requests:
               cpu: 10m
@@ -97,7 +97,7 @@ spec:
         - name: acr-secret
       containers:
         - name: order-service
-          image: ${{ secrets.ACR_NAME }}.azurecr.io/order-service:latest
+          image: ACR_NAME.azurecr.io/order-service:latest
           imagePullPolicy: Always
           ports:
             - containerPort: 3000
@@ -107,9 +107,9 @@ spec:
             - name: ORDER_QUEUE_PORT
               value: "5672"
             - name: ORDER_QUEUE_USERNAME
-              value: ${{ secrets.ORDER_QUEUE_USER }}
+              value: ORDER_QUEUE_USER
             - name: ORDER_QUEUE_PASSWORD
-              value: ${{ secrets.ORDER_QUEUE_PASS }}
+              value: ORDER_QUEUE_PASS
             - name: ORDER_QUEUE_NAME
               value: "orders"
             - name: FASTIFY_ADDRESS
@@ -193,7 +193,7 @@ spec:
         - name: acr-secret
       containers:
         - name: product-service
-          image: ${{ secrets.ACR_NAME }}.azurecr.io/product-service:latest
+          image: ACR_NAME.azurecr.io/product-service:latest
           imagePullPolicy: Always
           ports:
             - containerPort: 3002
@@ -256,7 +256,7 @@ spec:
         - name: acr-secret
       containers:
         - name: store-front
-          image: ${{ secrets.ACR_NAME }}.azurecr.io/store-front:latest
+          image: ACR_NAME.azurecr.io/store-front:latest
           imagePullPolicy: Always
           ports:
             - containerPort: 8080
