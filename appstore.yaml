@@ -21,7 +21,7 @@ spec:
         - name: acr-secret
       containers:
         - name: rabbitmq
-          image: $ACR_NAME.azurecr.io/rabbitmq:3.13.2
+          image: azdevops77.azurecr.io/rabbitmq:3.13.2
           imagePullPolicy: Always
           ports:
             - containerPort: 5672
@@ -97,7 +97,7 @@ spec:
         - name: acr-secret
       containers:
         - name: order-service
-          image: $ACR_NAME.azurecr.io/order-service:latest
+          image: azdevops77.azurecr.io/order-service:latest
           imagePullPolicy: Always
           ports:
             - containerPort: 3000
@@ -193,7 +193,7 @@ spec:
         - name: acr-secret
       containers:
         - name: product-service
-          image: $ACR_NAME.azurecr.io/product-service:latest
+          image: azdevops77.azurecr.io/product-service:latest
           imagePullPolicy: Always
           ports:
             - containerPort: 3002
@@ -256,7 +256,7 @@ spec:
         - name: acr-secret
       containers:
         - name: store-front
-          image: $ACR_NAME.azurecr.io/store-front:latest
+          image: azdevops77.azurecr.io/store-front:latest
           imagePullPolicy: Always
           ports:
             - containerPort: 8080
