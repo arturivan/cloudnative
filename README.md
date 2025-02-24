@@ -80,3 +80,7 @@ kubectl get svc store-front
 kubectl port-forward svc/store-front 8080:80
 http://localhost:8080
 ```
+
+The status of services in Lens Dashboard:
+
+![Status](assets/scr2145455.png)
