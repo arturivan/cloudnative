@@ -1,0 +1,11 @@
+﻿Name [displayName] Required,User name [userPrincipalName] Required,Initial password [passwordProfile] Required,Block sign in (Yes/No) [accountEnabled] Required,First name [givenName],Last name [surname],Job title [jobTitle],Department [department],Usage location [usageLocation],Street address [streetAddress],State or province [state],Country or region [country],Office [physicalDeliveryOfficeName],City [city],ZIP or postal code [postalCode],Office phone [telephoneNumber],Mobile phone [mobile]
+Emily Johnson,Emily.Johnson@Devops619.onmicrosoft.com,Em!Jy2023@LpQ9,Yes,Emily,Johnson
+Michael Smith,Michael.Smith@Devops619.onmicrosoft.com,Mi@Sm#1987XzR2,Yes,Michael,Smith
+Sophia Williams,Sophia.Williams@Devops619.onmicrosoft.com,So$Wi&4567VbN8,Yes,Sophia,Williams
+Daniel Brown,Daniel.Brown@Devops619.onmicrosoft.com,Da@Br*7890KmL1,Yes,Daniel,Brown
+Olivia Davis,Olivia.Davis@Devops619.onmicrosoft.com,Ol!Da#2023QwE4,Yes,Olivia,Davis
+James Wilson,James.Wilson@Devops619.onmicrosoft.com,Ja@Wi&1985RtY7,Yes,James,Wilson
+Ava Martinez,Ava.Martinez@Devops619.onmicrosoft.com,Av!Ma#5678ZxC3,Yes,Ava,Martinez
+Benjamin Anderson,Benjamin.Anderson@Devops619.onmicrosoft.com,Be@An&1234FgH6,Yes,Benjamin,Anderson
+Mia Taylor,Mia.Taylor@Devops619.onmicrosoft.com,Mi@Ta#7890VnB2,Yes,Mia,Taylor
+William Thomas,William.Thomas@Devops619.onmicrosoft.com,Wi!Th#2021LpM5,Yes,William,Thomas

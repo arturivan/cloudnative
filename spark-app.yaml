@@ -1,0 +1,49 @@
+apiVersion: "sparkoperator.k8s.io/v1beta2"
+kind: SparkApplication
+metadata:
+  name: uppergithub
+  namespace: default
+spec:
+  type: Python
+  pythonVersion: "3"
+  mode: cluster
+  image: "azdevops77.azurecr.io/spark-text-transform:latest"
+  mainApplicationFile: local:///opt/spark-data/spark_job.py
+  imagePullPolicy: Always
+  imagePullSecrets:
+    - acr-secret
+  sparkVersion: "3.1.1"
+  restartPolicy:
+    type: Never
+  volumes:
+    - name: azure-storage-secrets
+      secret:
+        secretName: azure-storage-secrets
+  driver:
+    cores: 1
+    coreLimit: "1200m"
+    memory: "512m"
+    labels:
+      version: 3.1.1
+    serviceAccount: spark-operator-spark
+    volumeMounts:
+      - name: azure-storage-secrets
+        mountPath: "/mnt/secrets"
+        readOnly: true
+    env:
+      - name: SECRET_MOUNT_PATH
+        value: "/mnt/secrets"
+  executor:
+    cores: 1
+    instances: 2
+    memory: "512m"
+    labels:
+      version: 3.1.1
+    serviceAccount: spark-operator-spark
+    volumeMounts:
+      - name: azure-storage-secrets
+        mountPath: "/mnt/secrets"
+        readOnly: true
+    env:
+      - name: SECRET_MOUNT_PATH
+        value: "/mnt/secrets"

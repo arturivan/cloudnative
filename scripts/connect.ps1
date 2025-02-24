@@ -1,0 +1,1 @@
+ssh admink8s@my-IP
