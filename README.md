@@ -11,13 +11,13 @@ I built a secure CI/CD pipeline to automate deployments for Apache Spark jobs us
 
 Tech Stack & Tools:
 
-Kubernetes (RKE2) – Cluster orchestration
-Kubeflow Spark Operator – Managing Spark workloads on Kubernetes
-Apache Spark – Distributed data transformations
-GitHub Actions – CI/CD for automated Spark job deployment
-Tailscale – Secure cluster access
-Azure Entra ID – Authentication and IAM
-Grafana Cloud and Lens – Monitoring
+- Kubernetes (RKE2) – Cluster orchestration
+- Kubeflow Spark Operator – Managing Spark workloads on Kubernetes
+- Apache Spark – Distributed data transformations
+- GitHub Actions – CI/CD for automated Spark job deployment
+- Tailscale – Secure cluster access
+- Azure Entra ID – Authentication and IAM
+- Grafana Cloud and Lens – Monitoring
 
 Key Highlights:
 
