@@ -1,1 +1,0 @@
-vmrun start "A:\OS\ubuntu-os\Clone of Ubuntu_OS.vmx" nogui

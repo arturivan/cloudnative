@@ -30,9 +30,15 @@ spec:
               name: rabbitmq-http
           env:
             - name: RABBITMQ_DEFAULT_USER
-              value: $RABBITMQ_USER
+              valueFrom:
+                secretKeyRef:
+                  name: rabbitmq-credentials
+                  key: username
             - name: RABBITMQ_DEFAULT_PASS
-              value: $RABBITMQ_PASS
+              valueFrom:
+                secretKeyRef:
+                  name: rabbitmq-credentials
+                  key: password
           resources:
             requests:
               cpu: 10m
@@ -107,9 +113,15 @@ spec:
             - name: ORDER_QUEUE_PORT
               value: "5672"
             - name: ORDER_QUEUE_USERNAME
-              value: $ORDER_QUEUE_USER
+              valueFrom:
+                secretKeyRef:
+                  name: order-queue-credentials
+                  key: username
             - name: ORDER_QUEUE_PASSWORD
-              value: $ORDER_QUEUE_PASS
+              valueFrom:
+                secretKeyRef:
+                  name: order-queue-credentials
+                  key: password
             - name: ORDER_QUEUE_NAME
               value: "orders"
             - name: FASTIFY_ADDRESS

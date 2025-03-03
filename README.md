@@ -4,7 +4,7 @@
 
 # Overview
 
-I deployed a microservices-based store application to my local Kubernetes cluster. The application consists of:
+I deployed a microservices-based store application to my local Kubernetes cluster. The application consists of four services according the quickstart template:
 
 - Storefront: Web application for customers to view products and place orders.
 - Product Service: Provides product information.
@@ -18,12 +18,8 @@ I deployed a microservices-based store application to my local Kubernetes cluste
 - Built images from Docker files locally, tagged them and pushed to Azure Container Registry
 - Used docker-compose-quickstart.yml to test the application in Docker.
 - Modified aks-store-quickstart.yaml to fit local Kubernetes deployment.
-- Created Namespace storeapp , set context to storeapp. In the next deployments I will fully switch to Kustomize, or Helm.
-
-```
-kubectl create namespace storeapp
-kubectl config set-context --current --namespace=storeapp
-```
+- Created Namespace storeapp
+- Deployed the microservices locally
 
 Image Pull Secret for ACR
 
@@ -48,6 +44,8 @@ restartPolicy: Always
           imagePullPolicy: Always
 ```
 
+- Created Kubernetes secrets for RABBITMQ_DEFAULT_USER and ORDER_QUEUE_USERNAME. The manifest now references the Kubernetes secrets
+
 Fixing RabbitMQ Deployment Issues
 
 - Solved Erlang syntax error and failed deployments - a dot was missing and Rabbitmq could not start fully
@@ -62,10 +60,14 @@ metadata:
   name: rabbitmq-enabled-plugins
 ```
 
+- Defined namespace creation
+
 - Deployed the microservices locally
 
 ```
-kubectl apply -f deploy_local.yaml
+kubectl apply -f namespace.yaml
+kubectl config set-context --current --namespace=storeapp
+kubectl apply -f appstore.yaml
 ```
 
 - Checked the status of deployed microservices in Lens dashboard and used kubectl to check the store-front Loadbalancer:

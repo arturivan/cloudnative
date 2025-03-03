@@ -7,12 +7,14 @@ on:
     paths-ignore:
       - "assets/**" # Exclude
       - "logs/**"
+      - "k8s/**"
   pull_request:
     branches:
       - dev
     paths-ignore:
       - "assets/**" # Exclude
       - "logs/**"
+      - "k8s/**"
 
 jobs:
   build:
@@ -89,7 +91,7 @@ jobs:
       - name: Check Tailscale connection
         run: |
           tailscale status
-          ping -c 3 100.117.55.121 # Kubernetes server IP
+          ping -c 3 100.108.105.97 # Kubernetes server IP
 
       # Install kubectl
       - name: Install kubectl
