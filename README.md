@@ -116,11 +116,13 @@ The status of services in Lens Dashboard:
 The GitHub Actions workflow automates the deployment of microservices to a local Kubernetes cluster over a Tailscale VPN.
 
 Key Features:
+
 Secure Kubernetes Access:
 
 The GitHub runner connects to the cluster using Tailscale VPN.
 A SAN certificate was issued to allow the Tailscale IP to authenticate via kubeconfig.
 The kubeconfig file is stored securely as a base64-encoded GitHub secret.
+
 CI/CD Workflow:
 
 Build Stage:
