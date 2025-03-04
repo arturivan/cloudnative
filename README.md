@@ -2,6 +2,11 @@
 
 ![Architecture](assets/demo-arch.png)
 
+## Branching Strategy
+
+- **dev:** This branch contains the code and configuration for the web application. Changes to this branch trigger the web application deployment pipeline.
+- **main:** This branch contains the simulation-ready configuration for the Spark operator and related MLOps components. Changes to this branch trigger the MLOps deployment pipeline.
+
 # Overview
 
 I deployed a microservices-based store application to my local Kubernetes cluster. The application consists of four services according the quickstart template:
@@ -10,7 +15,8 @@ I deployed a microservices-based store application to my local Kubernetes cluste
 - Product Service: Provides product information.
 - Order Service: Manages order placement.
 - RabbitMQ: Message queue for handling order processing.
-  The source code comes from the Azure-Samples/aks-store-demo repository.
+
+The source code comes from the Azure-Samples/aks-store-demo repository.
 
 # Local Testing & Deployment
 
@@ -45,6 +51,24 @@ restartPolicy: Always
 ```
 
 - Created Kubernetes secrets for RABBITMQ_DEFAULT_USER and ORDER_QUEUE_USERNAME. The manifest now references the Kubernetes secrets
+
+```
+kubectl apply -f secrets.yml
+
+example:
+
+env:
+            - name: RABBITMQ_DEFAULT_USER
+              valueFrom:
+                secretKeyRef:
+                  name: rabbitmq-credentials
+                  key: username
+            - name: RABBITMQ_DEFAULT_PASS
+              valueFrom:
+                secretKeyRef:
+                  name: rabbitmq-credentials
+                  key: password
+```
 
 Fixing RabbitMQ Deployment Issues
 
@@ -86,3 +110,30 @@ http://localhost:8080
 The status of services in Lens Dashboard:
 
 ![Status](assets/scr2145455.png)
+
+# Deployment from GitHub Actions
+
+The GitHub Actions workflow automates the deployment of microservices to a local Kubernetes cluster over a Tailscale VPN.
+
+Key Features:
+Secure Kubernetes Access:
+
+The GitHub runner connects to the cluster using Tailscale VPN.
+A SAN certificate was issued to allow the Tailscale IP to authenticate via kubeconfig.
+The kubeconfig file is stored securely as a base64-encoded GitHub secret.
+CI/CD Workflow:
+
+Build Stage:
+
+- Uses Docker Buildx for multi-platform support.
+- Builds and pushes container images to Azure Container Registry (ACR).
+- Supports caching to speed up subsequent builds.
+
+Deployment Stage:
+
+- Establishes a secure Tailscale connection.
+- Installs kubectl and configures it using the stored kubeconfig.
+- Lints Kubernetes manifests before deployment to catch errors early.
+- Deploys services using kubectl apply.
+- Monitors rollout status to ensure successful deployment.
+- Implements an automatic rollback mechanism in case of failure.
