@@ -1,7 +1,7 @@
 # Use the Bitnami Spark image as the base image
 FROM bitnami/spark:latest
 
-USER spark
+USER 1001
 
 # Set the working directory inside the container
 WORKDIR /opt/spark-data
@@ -12,7 +12,7 @@ COPY spark_job.py /opt/spark-data/spark_job.py
 USER root
 # Install any Python dependencies (e.g., requests)
 RUN pip install --no-cache-dir requests azure-storage-blob
-USER spark
+USER 1001
 
 # Set the entry point to submit the Spark job
 ENTRYPOINT ["spark-submit", "/opt/spark-data/spark_job.py"]
