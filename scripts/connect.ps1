@@ -1,1 +1,1 @@
-ssh admink8s@my-IP
+ssh rke2@my-IP

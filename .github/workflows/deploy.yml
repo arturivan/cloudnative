@@ -7,12 +7,14 @@ on:
     paths-ignore:
       - "images/**" # Exclude changes in the images directory
       - "iac/**" # Exclude changes in the iac directory
+      - "helm/**" # Exclude changes in the helm directory
   pull_request:
     branches:
       - main
     paths-ignore:
       - "images/**" # Exclude changes in the images directory
       - "iac/**" # Exclude changes in the iac directory
+      - "helm/**" # Exclude changes in the helm directory
 
 jobs:
   build:
@@ -61,7 +63,7 @@ jobs:
       - name: Check Tailscale connection
         run: |
           tailscale status
-          ping -c 3 100.116.153.111 # Kubernetes server IP
+          ping -c 3 100.108.105.97 # Kubernetes server IP
 
       # Install kubectl
       - name: Install kubectl
@@ -81,7 +83,16 @@ jobs:
           kubectl config use-context default || echo "No context set, checking available contexts."
           kubectl cluster-info || echo "Failed to connect to the Kubernetes API server"
 
+      #Linting, YAML syntax check to catch issues before deployment
+      - name: Validate Kubernetes Manifests
+        run: kubectl apply --dry-run=client -f spark-app.yaml
+
       # Deploy to Kubernetes
       - name: Deploy to Kubernetes
         run: |
           kubectl apply -f spark-app.yaml || echo "Failed to apply spark-app.yaml"
+
+      # Automatic Rollback on Failure
+      - name: Rollback on failure
+        if: failure()
+        run: kubectl rollout undo deployment spark-app -n default
