@@ -7,6 +7,10 @@
 - **main:** This branch contains the simulation-ready configuration for the Spark operator and related MLOps components. Changes to this branch trigger the MLOps deployment pipeline.
 - **dev:** This branch contains the code and configuration for the web application. Changes to this branch trigger the web application deployment pipeline.
 
+## Infrastructure as code repo:
+
+https://github.com/arturivan/cloudinfra/tree/main
+
 I built a secure CI/CD pipeline to automate deployments for Apache Spark jobs using the Kubeflow Spark Operator on Kubernetes (RKE2). This project focuses on secure ML pipelines, scalable data transformations, and cloud-native orchestration.
 
 Tech Stack & Tools:
