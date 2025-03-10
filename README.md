@@ -7,6 +7,10 @@
 - **dev:** This branch contains the code and configuration for the web application. Changes to this branch trigger the web application deployment pipeline.
 - **main:** This branch contains the simulation-ready configuration for the Spark operator and related MLOps components. Changes to this branch trigger the MLOps deployment pipeline.
 
+## Infrastructure as code repo:
+
+https://github.com/arturivan/cloudinfra/tree/main
+
 # Overview
 
 I deployed a microservices-based store application to my local Kubernetes cluster. The application consists of four services according the quickstart template:
