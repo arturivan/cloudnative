@@ -1,0 +1,22 @@
+# Default number of replicas for your deployment
+replicaCount: 1
+
+# Image configuration
+image:
+  repository: nginx # Docker image name
+  tag: latest # Docker image tag
+  pullPolicy: IfNotPresent # Only pull if not already present
+
+# Resource limits and requests for the container
+resources:
+  limits:
+    cpu: 500m # Maximum CPU (500 millicores = 0.5 CPU cores)
+    memory: 128Mi # Maximum memory (128 mebibytes)
+  requests:
+    cpu: 200m # Minimum required CPU
+    memory: 64Mi # Minimum required memory
+
+# Service configuration (used in service.yaml template)
+service:
+  type: ClusterIP # Kubernetes service type
+  port: 80 # Port to expose

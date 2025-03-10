@@ -1,0 +1,20 @@
+# Override default replica count
+replicaCount: 3
+
+# Override image tag
+image:
+  tag: "1.21.1"
+
+# Increase resource limits and requests
+resources:
+  limits:
+    cpu: "1" # 1 full CPU core
+    memory: "256Mi" # 256 MiB of memory
+  requests:
+    cpu: "500m" # 0.5 CPU core
+    memory: "128Mi" # 128 MiB of memory
+
+# Change service type and port
+service:
+  type: LoadBalancer
+  port: 8080

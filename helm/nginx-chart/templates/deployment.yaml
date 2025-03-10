@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Release.Name }}-nginx  # This will use the release name you provide when installing
+  labels:
+    app: nginx
+    chart: {{ .Chart.Name }}-{{ .Chart.Version }}  # Adds chart info to labels
+    release: {{ .Release.Name }}  # Adds release name to labels
+spec:
+  # Number of pod replicas - this value comes from values.yaml
+  replicas: {{ .Values.replicaCount }}  
+  selector:
+    matchLabels:
+      app: nginx
+      release: {{ .Release.Name }}
+  template:
+    metadata:
+      labels:
+        app: nginx
+        release: {{ .Release.Name }}
+    spec:
+      containers:
+      - name: nginx-container
+        # These image values come from values.yaml
+        image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"  
+        imagePullPolicy: {{ .Values.image.pullPolicy }}
+        # These resource values come from values.yaml
+        resources:
+          limits:
+            memory: {{ .Values.resources.limits.memory }}
+            cpu: {{ .Values.resources.limits.cpu }}
+          requests:
+            memory: {{ .Values.resources.requests.memory }}
+            cpu: {{ .Values.resources.requests.cpu }}
+        ports:
+        - containerPort: 80
