@@ -7,7 +7,7 @@
 - **main:** This branch contains the simulation-ready configuration for the Spark operator and related MLOps components. Changes to this branch trigger the MLOps deployment pipeline.
 - **dev:** This branch contains the code and configuration for the web application. Changes to this branch trigger the web application deployment pipeline.
 
-## Infrastructure as code repo:
+**Infrastructure as code repo:**
 
 https://github.com/arturivan/cloudinfra/tree/main
 
@@ -25,7 +25,7 @@ Tech Stack & Tools:
 
 Key Highlights:
 
-- Created a hardened Ubuntu Minimal VM in VMware Workstation Pro and set up an RKE2 Kubernetes cluster
+- Created a hardened Ubuntu Minimal VM in Hyper-V and set up an RKE2 Kubernetes cluster
 - Automated Spark job deployments using the Kubeflow Spark Operator
 - Integrated GitHub Actions for secure and efficient CI/CD workflows
 - Used Azure Container Registry for managing and securing container images
@@ -35,4 +35,36 @@ Key Highlights:
 - Implemented IAM integration and security best practices with Grafana Cloud and Azure Entra ID
 - Designed for scalability, allowing efficient Spark job execution on Kubernetes
 
-This repository is being upated.
+**Kubeflow Spark Pipeline**
+
+This GitHub Actions pipeline automates the CI/CD process for deploying a Spark-based text transformation application on Kubernetes using Kubeflow. The pipeline is triggered when changes are pushed to the main branch within the src/ directory.
+
+**Pipeline Overview**
+
+**Build Phase**
+
+- Checkout Code: Retrieves the latest changes from the repository.
+- Azure Authentication: Logs into Azure and Azure Container Registry (ACR).
+- Docker Image Build & Push: Builds the Spark application container.
+- Pushes the image to ACR.
+
+**Deployment Phase**
+
+- Tailscale Setup: Establishes a secure connection to a private Kubernetes cluster.
+- Kubectl Configuration: Installs kubectl.
+- Configures access using the stored KUBECONFIG.
+
+Manifest Validation & Deployment:
+
+- Performs a dry-run validation of spark-app.yaml.
+- Deploys the Spark job to Kubernetes.
+- Automatic Rollback: If the deployment fails, the pipeline triggers a rollback of the application.
+
+Key Features
+
+- Secure authentication with Azure and Tailscale
+- Automated Docker image building and registry integration
+- Kubernetes manifest validation before deployment
+- Automatic rollback on failure for reliability
+
+This pipeline ensures a smooth and automated workflow for deploying Spark jobs in a Kubernetes environment with minimal manual intervention.
