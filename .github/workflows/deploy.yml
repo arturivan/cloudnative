@@ -4,17 +4,8 @@ on:
   push:
     branches:
       - main
-    paths-ignore:
-      - "images/**" # Exclude changes in the images directory
-      - "iac/**" # Exclude changes in the iac directory
-      - "helm/**" # Exclude changes in the helm directory
-  pull_request:
-    branches:
-      - main
-    paths-ignore:
-      - "images/**" # Exclude changes in the images directory
-      - "iac/**" # Exclude changes in the iac directory
-      - "helm/**" # Exclude changes in the helm directory
+    paths:
+      - "src/**"
 
 jobs:
   build:
