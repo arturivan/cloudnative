@@ -68,3 +68,7 @@ Key Features
 - Automatic rollback on failure for reliability
 
 This pipeline ensures a smooth and automated workflow for deploying Spark jobs in a Kubernetes environment with minimal manual intervention.
+
+**Grafana Cloud Dashboard**
+
+![Grafana](images/scr193806.png)
