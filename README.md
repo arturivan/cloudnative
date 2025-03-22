@@ -11,11 +11,11 @@
 
 https://github.com/arturivan/cloudinfra/tree/main
 
-I built a secure CI/CD pipeline to automate deployments for Apache Spark jobs using the Kubeflow Spark Operator on Kubernetes (RKE2). This project focuses on secure ML pipelines, scalable data transformations, and cloud-native orchestration.
+I built a secure CI/CD pipeline to automate deployments for Apache Spark jobs using the Kubeflow Spark Operator on Kubernetes (K3S). This project focuses on secure ML pipelines, scalable data transformations, and cloud-native orchestration.
 
 Tech Stack & Tools:
 
-- Kubernetes (RKE2) – Cluster orchestration
+- Kubernetes (K3S) – Cluster orchestration
 - Kubeflow Spark Operator – Managing Spark workloads on Kubernetes
 - Apache Spark – Distributed data transformations
 - GitHub Actions – CI/CD for automated Spark job deployment
@@ -25,7 +25,7 @@ Tech Stack & Tools:
 
 Key Highlights:
 
-- Created a hardened Ubuntu Minimal VM in Hyper-V and set up an RKE2 Kubernetes cluster
+- Created a hardened openSUSE Leap in Hyper-V and set up an K3S Kubernetes cluster
 - Automated Spark job deployments using the Kubeflow Spark Operator
 - Integrated GitHub Actions for secure and efficient CI/CD workflows
 - Used Azure Container Registry for managing and securing container images
@@ -71,4 +71,4 @@ This pipeline ensures a smooth and automated workflow for deploying Spark jobs i
 
 **Grafana Cloud Dashboard**
 
-![Grafana](images/scr193806.png)
+![Grafana](images/scr032255500.png)
