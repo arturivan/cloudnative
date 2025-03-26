@@ -2,6 +2,9 @@
 
 ![Architecture](assets/demo-arch.png)
 
+![Deployment Status](https://github.com/arturivan/cloudnative/actions/workflows/appstore.yaml/badge.svg?branch=dev)
+
+
 ## Branching Strategy
 
 - **dev:** This branch contains the code and configuration for the web application. Changes to this branch trigger the web application deployment pipeline.
