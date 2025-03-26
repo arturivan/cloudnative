@@ -2,7 +2,7 @@
 
 ![Architecture](assets/demo-arch.png)
 
-![Deployment Status](https://github.com/arturivan/cloudnative/actions/workflows/appstore.yaml/badge.svg?branch=dev)
+![Deployment Status](https://github.com/arturivan/cloudnative/actions/workflows/deploy.yml/badge.svg?branch=dev)
 
 
 ## Branching Strategy
