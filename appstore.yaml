@@ -311,10 +311,11 @@ apiVersion: v1
 kind: Service
 metadata:
   name: store-front
+  namespace: storeapp
 spec:
   ports:
     - port: 80
       targetPort: 8080
   selector:
     app: store-front
-  type: LoadBalancer
+  type: ClusterIP
