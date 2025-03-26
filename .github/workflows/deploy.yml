@@ -41,7 +41,7 @@ jobs:
 
       # Build the store-front image
       - name: Build Docker Image
-        working-directory: ./store-front
+        working-directory: ./src/store-front
         run: docker build -t $IMAGE_NAME1 .
 
       # Push store-front to Azure Container Registry
@@ -82,7 +82,7 @@ jobs:
       - name: Check Tailscale connection
         run: |
           tailscale status
-          ping -c 3 100.108.105.97 # Kubernetes server IP
+          ping -c 3 100.91.52.61 # Kubernetes server IP
 
       # Install kubectl
       - name: Install kubectl
