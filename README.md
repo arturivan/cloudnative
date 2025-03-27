@@ -14,6 +14,17 @@ https://dev.azure.com/ks8labs/_git/azureinfra?path=%2F&version=GBtest&_a=content
 
 https://github.com/arturivan/cloudinfra/tree/main
 
+**Gitops**
+
+Planning to migrate my applications to a GitOps repository with Flux for automated deployments.
+
+Exploring event monitoring and analysis in local Kubernetes environment using Vector and Redis: 
+https://github.com/arturivan/gitops
+
+https://hub.docker.com/r/timberio/vector
+
+**PySpark project**
+
 I built a secure CI/CD pipeline to automate deployments for Apache Spark jobs using the Kubeflow Spark Operator on Kubernetes (K3S). This project focuses on secure ML pipelines, scalable data transformations, and cloud-native orchestration.
 
 Tech Stack & Tools:
