@@ -9,6 +9,9 @@
 
 **Infrastructure as code repo:**
 
+moving to Azure Devops:
+https://dev.azure.com/ks8labs/_git/azureinfra?path=%2F&version=GBtest&_a=contents
+
 https://github.com/arturivan/cloudinfra/tree/main
 
 I built a secure CI/CD pipeline to automate deployments for Apache Spark jobs using the Kubeflow Spark Operator on Kubernetes (K3S). This project focuses on secure ML pipelines, scalable data transformations, and cloud-native orchestration.
