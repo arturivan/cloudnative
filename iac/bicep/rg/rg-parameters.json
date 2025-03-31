@@ -1,6 +1,0 @@
-{
-  "parameters": {
-    "resourceGroupName": { "value": "test-rg" },
-    "location": { "value": "westeurope" }
-  }
-}
